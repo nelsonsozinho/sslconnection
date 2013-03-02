@@ -46,13 +46,13 @@ public class ConnectWithTrustCheck {
 	public static void testConnection() throws KeyStoreException,
 			NoSuchAlgorithmException, CertificateException, IOException,
 			KeyManagementException {
-		File f = new File("arquivo/test.d");
+		File f = new File("path/test.d");
 		if (!f.exists())
 			return;
 
-		InputStream stream = new FileInputStream(new File("arquivo/test.d"));
+		InputStream stream = new FileInputStream(new File("path/test.d"));
 		KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-		keyStore.load(stream, "nelsonsozinho".toCharArray());
+		keyStore.load(stream, "password123".toCharArray());
 		stream.close();
 
 		javax.net.ssl.TrustManagerFactory factory = javax.net.ssl.TrustManagerFactory.getInstance(javax.net.ssl.TrustManagerFactory.getDefaultAlgorithm());
@@ -62,7 +62,7 @@ public class ConnectWithTrustCheck {
 		context.init(null, new TrustManager[] { defaultTrustManager }, null);
 		SSLSocketFactory sslSocketFactory = context.getSocketFactory();
 		
-		URL url = new URL("https://urini.fucapi.br/viewspo");
+		URL url = new URL("https://test.hostwitssl/viewspo");
 		URLConnection urlConnection = url.openConnection();
 		((HttpsURLConnection) urlConnection).setSSLSocketFactory(sslSocketFactory);
 		urlConnection.connect();

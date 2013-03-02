@@ -71,7 +71,7 @@ public class ConnectionSSL {
 		// Install the all-trusting host verifier
 		HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 
-		URL url = new URL("https://urini.fucapi.br/viewspo");
+		URL url = new URL("https://host_withssl/app");
 		URLConnection con = url.openConnection();
 		Reader reader = new InputStreamReader(con.getInputStream());
 		while (true) {
@@ -91,7 +91,7 @@ public class ConnectionSSL {
 
 	public static void basicConnection() throws IOException {
 		URL url = null;
-		url = new URL("https://urini.fucapi.br/viewspo");
+		url = new URL("https://host_withssl/app");
 
 		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 		SSLSocketFactory socketFactory = (SSLSocketFactory) SSLSocketFactory
